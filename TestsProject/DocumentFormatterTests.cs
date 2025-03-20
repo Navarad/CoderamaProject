@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace TestsProject
@@ -14,11 +15,13 @@ namespace TestsProject
         public void Serialize_ShouldConvertJsonToXml()
         {
             var formatter = new XmlDocumentFormatter();
+
+            string jsonString = "{ \"name\": \"John\", \"age\": 30 }";
             var document = new Document
             {
                 Id = "123",
                 Tags = new List<string> { "important", "test" },
-                Data = new { name = "John", age = 30 }
+                Data = JsonDocument.Parse(jsonString).RootElement
             };
 
             string xmlOutput = formatter.Serialize(document);
@@ -42,11 +45,12 @@ namespace TestsProject
         {
             var formatter = new JsonDocumentFormatter();
 
+            string jsonInput = "{ \"key\": \"value\" }";
             var document = new Document
             {
                 Id = "123",
                 Tags = new() { "important", "test" },
-                Data = new { key = "value" }
+                Data = JsonDocument.Parse(jsonInput).RootElement
             };
 
             var jsonString = formatter.Serialize(document);

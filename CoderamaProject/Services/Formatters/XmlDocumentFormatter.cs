@@ -1,6 +1,6 @@
 ﻿using CoderamaProject.Models;
 using Newtonsoft.Json;
-
+using System.Text.Json;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -13,7 +13,13 @@ namespace CoderamaProject.Services.Formatters
             if (document?.Data == null)
                 throw new ArgumentNullException(nameof(document), "Document or Data cannot be null");
 
-            var jsonString = JsonConvert.SerializeObject(document);
+            var jsonString = JsonConvert.SerializeObject(new
+            {
+                document.Id,
+                document.Tags,
+                Data = JsonConvert.DeserializeObject<object>(((JsonElement)document.Data).GetRawText())
+            });
+
             var xmlDocument = JsonConvert.DeserializeXmlNode(jsonString, "Document");
 
             if (xmlDocument == null)
