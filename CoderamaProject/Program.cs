@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddMemoryCache();
-builder.Services.AddSingleton<IDocumentService, InMemoryDocumentService>();
+builder.Services.AddSingleton<IDocumentService, InMemoryDocumentStorage>();
 builder.Services.AddSingleton<IDocumentFormatterFactory, DocumentFormatterFactory>();
 builder.Services.AddSingleton<JsonDocumentFormatter>();
 builder.Services.AddSingleton<XmlDocumentFormatter>();

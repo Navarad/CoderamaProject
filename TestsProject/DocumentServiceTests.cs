@@ -10,7 +10,7 @@ namespace TestsProject
         public void SaveDocument_ShouldStoreDocumentInCache()
         {
             var document = new Document { Id = "123", Tags = new() { "test" }, Data = new { key = "value" } };
-            var _documentService = new InMemoryDocumentService(new MemoryCache(new MemoryCacheOptions()));
+            var _documentService = new InMemoryDocumentStorage(new MemoryCache(new MemoryCacheOptions()));
 
             _documentService.SaveDocument(document);
             var retrievedDocument = _documentService.GetDocument("123");
@@ -23,7 +23,7 @@ namespace TestsProject
         [Fact]
         public void GetDocument_ShouldReturnNull_IfDocumentDoesNotExist()
         {
-            var _documentService = new InMemoryDocumentService(new MemoryCache(new MemoryCacheOptions()));
+            var _documentService = new InMemoryDocumentStorage(new MemoryCache(new MemoryCacheOptions()));
 
             var retrievedDocument = _documentService.GetDocument("nonexistent");
 
@@ -33,7 +33,7 @@ namespace TestsProject
         [Fact]
         public void SaveDocument_ShouldOverrideExistingDocument()
         {
-            var _documentService = new InMemoryDocumentService(new MemoryCache(new MemoryCacheOptions()));
+            var _documentService = new InMemoryDocumentStorage(new MemoryCache(new MemoryCacheOptions()));
 
             var document1 = new Document { Id = "123", Tags = new() { "first" }, Data = new { key = "value1" } };
             var document2 = new Document { Id = "123", Tags = new() { "second" }, Data = new { key = "value2" } };

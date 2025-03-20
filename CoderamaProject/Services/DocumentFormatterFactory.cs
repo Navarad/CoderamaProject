@@ -21,7 +21,7 @@ namespace CoderamaProject.Services
                 case "application/json":
                     return _serviceProvider.GetRequiredService<JsonDocumentFormatter>();
                 default:
-                    return _serviceProvider.GetRequiredService<JsonDocumentFormatter>();
+                    throw new NotSupportedException($"Content type {contentType} is not supported.");
             };
         }
     }

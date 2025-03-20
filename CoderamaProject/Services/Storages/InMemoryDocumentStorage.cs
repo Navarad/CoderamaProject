@@ -4,13 +4,13 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace CoderamaProject.Services.Storages
 {
-    public class InMemoryDocumentService : IDocumentService
+    public class InMemoryDocumentStorage : IDocumentService
     {
         // TODO: we can customize the cache to better fit our needs
         private readonly IMemoryCache _cache;
         private readonly TimeSpan _cacheDuration = TimeSpan.FromHours(1);
 
-        public InMemoryDocumentService(IMemoryCache cache)
+        public InMemoryDocumentStorage(IMemoryCache cache)
         {
             _cache = cache;
         }

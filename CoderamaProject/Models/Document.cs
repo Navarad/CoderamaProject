@@ -7,7 +7,6 @@ namespace CoderamaProject.Models
     {
         public string Id { get; set; }
         public List<string> Tags { get; set; } = new();
-        [XmlIgnore]
         public object Data { get; set; }
     }
 }
