@@ -6,6 +6,7 @@ namespace CoderamaProject.Services.Storages
 {
     public class InMemoryDocumentService : IDocumentService
     {
+        // TODO: we can customize the cache to better fit our needs
         private readonly IMemoryCache _cache;
         private readonly TimeSpan _cacheDuration = TimeSpan.FromHours(1);
 

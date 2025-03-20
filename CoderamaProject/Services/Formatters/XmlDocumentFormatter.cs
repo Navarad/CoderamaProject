@@ -13,6 +13,7 @@ namespace CoderamaProject.Services.Formatters
             if (document?.Data == null)
                 throw new ArgumentNullException(nameof(document), "Document or Data cannot be null");
 
+            // TODO: it might be better to store the file as raw JSON string to avoid conversion here
             var jsonString = JsonConvert.SerializeObject(new
             {
                 document.Id,

@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 
 namespace CoderamaProject.Controllers
 {
+    // TODO: we can add custom error handling with custom exceptions to show more information to the client if something goes wrong
     [ApiController]
     [Route("documents")]
     public class DocumentsController : ControllerBase
@@ -48,6 +49,7 @@ namespace CoderamaProject.Controllers
             if (document == null)
                 return NotFound();
 
+            // TODO: this might be better to be moved to a separate service
             var formatter = _formatterFactory.GetFormatter(accept);
             return Content(formatter.Serialize(document), accept);
         }
